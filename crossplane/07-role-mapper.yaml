@@ -1,0 +1,27 @@
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Roles
+metadata:
+  name: ldap-parent-group-admin-role-mapper
+spec:
+  forProvider:
+    groupIdRef: 
+      name: ldap-admin
+    roleIdsRefs:
+      - name: k8s-admin
+    realmId: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Roles
+metadata:
+  name: ldap-parent-group-viewer-role-mapper
+spec:
+  forProvider:
+    groupIdRef: 
+      name: ldap-viewer
+    roleIdsRefs:
+      - name: k8s-view
+    realmId: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config

@@ -1,0 +1,10 @@
+apiVersion: realm.keycloak.crossplane.io/v1alpha1
+kind: Realm
+metadata:
+  name: myrealm
+spec:
+  forProvider:
+    enabled: true
+    realm: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config

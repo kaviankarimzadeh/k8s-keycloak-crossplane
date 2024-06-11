@@ -1,0 +1,25 @@
+apiVersion: role.keycloak.crossplane.io/v1alpha1
+kind: Role
+metadata:
+  name: k8s-view
+spec:
+  forProvider:
+    clientIdRef: 
+      name: kubernetes
+    name: k8s-view
+    realmId: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config
+---
+apiVersion: role.keycloak.crossplane.io/v1alpha1
+kind: Role
+metadata:
+  name: k8s-admin
+spec:
+  forProvider:
+    clientIdRef: 
+      name: kubernetes
+    name: k8s-admin
+    realmId: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config

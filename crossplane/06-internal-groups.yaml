@@ -1,0 +1,21 @@
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: ldap-viewer
+spec:
+  forProvider:
+    name: "LDAP-VIEWER"
+    realmId: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config
+---
+apiVersion: group.keycloak.crossplane.io/v1alpha1
+kind: Group
+metadata:
+  name: ldap-admin
+spec:
+  forProvider:
+    name: "LDAP-ADMIN"
+    realmId: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config

@@ -1,0 +1,49 @@
+apiVersion: ldap.keycloak.crossplane.io/v1alpha1
+kind: GroupMapper
+metadata:
+  name: admin-group
+spec:
+  forProvider:
+    name: "amsterdam"
+    ldapGroupsDn: "ou=groups,dc=example,dc=local"
+    groupNameLdapAttribute: "cn"
+    groupObjectClasses: ["groupOfNames"]
+    groupsPath: "LDAP-ADMIN"
+    membershipLdapAttribute: "member"
+    membershipAttributeType: "DN"
+    membershipUserLdapAttribute: "memberOf"
+    groupsLdapFilter: "(&(objectClass=groupOfNames)(cn=amsterdam))"
+    mode: "READ_ONLY"
+    userRolesRetrieveStrategy: "LOAD_GROUPS_BY_MEMBER_ATTRIBUTE"
+    preserveGroupInheritance: false
+    memberofLdapAttribute: "memberOf"
+    ldapUserFederationIdRef:
+      name: example
+    realmId: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config
+---
+apiVersion: ldap.keycloak.crossplane.io/v1alpha1
+kind: GroupMapper
+metadata:
+  name: viewer-group
+spec:
+  forProvider:
+    name: "rotterdam"
+    ldapGroupsDn: "ou=groups,dc=example,dc=local"
+    groupNameLdapAttribute: "cn"
+    groupObjectClasses: ["groupOfNames"]
+    groupsPath: "LDAP-VIEWER"
+    membershipLdapAttribute: "member"
+    membershipAttributeType: "DN"
+    membershipUserLdapAttribute: "memberOf"
+    groupsLdapFilter: "(&(objectClass=groupOfNames)(cn=rotterdam))"
+    mode: "READ_ONLY"
+    userRolesRetrieveStrategy: "LOAD_GROUPS_BY_MEMBER_ATTRIBUTE"
+    preserveGroupInheritance: false
+    memberofLdapAttribute: "memberOf"
+    ldapUserFederationIdRef:
+      name: example
+    realmId: myrealm
+  providerConfigRef:
+    name: keycloak-provider-config
